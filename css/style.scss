@@ -1,0 +1,240 @@
+*, *::before,*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+    background-color: transparent;
+}
+::-webkit-scrollbar-button {
+    display: none;
+}
+::-webkit-scrollbar-thumb {
+    width: 0;
+}
+$mainColor: #a333ff;
+$secColor: #f2e3ff;
+$mainFont: black;
+$secFont: #585858;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-btn {
+    color: white;
+    background-color: $mainColor;
+    border: none;
+    outline: none;
+    padding: 12px 24px;
+    cursor: pointer;
+}
+.shadow {
+    box-shadow: rgba(17, 12, 46, 0.15) -30px 48px 100px 0px;
+}
+main {
+    // overflow-x: hidden;
+    position: relative;
+    @extend .center;
+    font-family: sans-serif;
+    > div:nth-of-type(1) {
+        width: 100%;
+        height: 260px;
+        background-image: url('../img/back.jpg');
+        background-size: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -99;
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: $mainColor;
+            opacity: 0.3;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+#todo {
+    margin-top: 120px;
+    width: 80%;
+    height: 480px;
+    @extend .center;
+    justify-content: space-between;
+    transform: translateX(20%);
+    transition: 0.4s;
+}
+#list, #info {
+    background-color: white;
+    @extend .shadow;
+    height: 100%;
+    padding: 1.5rem;
+}
+#list {
+    width: 60%;
+    padding: 2rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    > h2 {
+        font-size: 2rem;
+        height: 15%;
+    }
+    > section {
+        display: flex;
+        width: 100%;
+        height: 70%;
+        flex-direction: column;
+        overflow-y: scroll;
+        margin: 1rem 0;
+        .listChild {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #cecece;
+            padding-bottom: 1rem;
+            span {
+                margin-top: 1rem;
+                margin-right: 1rem;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                border: 1px solid #ff1f1f;
+                @extend .center;
+                cursor: pointer;
+                padding-top: 3px;
+                color: #ff1f1f;
+                font-size: 1.8rem;
+                transition: 0.4s;
+                &:hover {
+                    color: white;
+                    background-color: #ff1f1f;
+                }
+            }
+            article {
+                width: 70%;
+                > h2 {
+                    padding: 0.5rem 0;
+                    font-size: 1.2rem;
+                }
+                > p {
+                    font-size: 1rem;
+                    color: $secFont;
+                }
+            }
+        }
+    }
+    > button {
+        width: 100%;
+        font-size: 1.3rem;
+        @extend .main-btn;
+        transition: 0.4s;
+        &:hover {
+            background-color: #8229ca;
+        }
+    }
+}
+#info {
+    width: 40%;
+    @extend .center;
+    justify-content: flex-start;
+    flex-direction: column;
+    transform: translateX(-100%);
+    transition: 0.4s;
+    z-index: -1;
+    ul {
+        width: 90%;
+        height: auto;
+        margin-top: 1rem;
+        li {
+            margin: 0.5rem 0;
+            color: $secFont;
+            &:nth-of-type(1) {
+                color: $mainFont;
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+    h2 {
+        padding: 1rem 0;
+    }
+    > section {
+        width: 100%;
+        height: auto;
+        @extend .center;
+        flex-direction: column;
+        input {
+            width: 90%;
+            height: 40px;
+            padding: 0 15px;
+            margin: 0.5rem 0;
+            outline: none;
+            border: 1px solid $secFont;
+        }
+        > div {
+            width: 90%;
+            height: auto;
+            @extend .center;
+            margin: 0.5rem 0;
+            justify-content: space-between;
+            button {
+                padding: 12px 24px;
+                width: calc(50% - 0.5rem);
+                outline: none;
+                border: none;
+                cursor: pointer;
+                transition: 0.4s;
+                &:nth-of-type(1) {
+                    @extend .main-btn;
+                    &:hover {
+                        background-color: #8229ca;
+                    }
+                }
+                &:nth-of-type(2) {
+                    background-color: $secColor;
+                    &:hover {
+                        background-color: #dfd7e6;
+                    }
+                }
+            }
+        }
+    }
+}
+.activepar {
+    transform: translateX(0) !important;
+}
+.activeinfo {
+    transform: translateX(0) !important;
+}
+@media only screen and (max-width: 1024px) {
+    #todo {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        transform: translateX(0);
+    }
+    #list {
+        height: 300px;
+    }
+    #list, #info {
+        width: 100%;
+        transform: translateX(0);
+    }
+    #info {
+        z-index: 99;
+    }
+}
